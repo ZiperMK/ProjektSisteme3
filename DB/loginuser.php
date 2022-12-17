@@ -12,10 +12,13 @@ $geslo = $_POST["pw"];
 $sql = "SELECT id FROM user WHERE username = '$username' AND password = '$geslo'";
 $check = mysqli_query($db,$sql);
 
-if(!$check || mysqli_num_rows($check) == 1){
-    header("Location:../ERROR/userexists.php");
+if($check && mysqli_num_rows($check) == 1){
+    $id=$check->fetch_assoc();
+    $_SESSION["s_id"] = $id["id"];
+    $_SESSION["s_username"] = $username;
+    $_SESSION["logged"] = true;
+    header("Location:../Main/home.php");
 }else{
-    header("Location:../Welcome/login.php");
+    header("Location:../ERROR/dberror.php");
 }
-session_destroy();
 ?>
