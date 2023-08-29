@@ -1,3 +1,4 @@
+<?php include("../HeadFoot/header.php") ?>
 <html>
     <head>
         <title>Registration</title>
